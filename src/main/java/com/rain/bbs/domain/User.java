@@ -11,8 +11,7 @@ import java.util.Date;
 @Table(name="cms_user")
 public class User extends BaseModel implements Serializable{
 
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = -4310057677554850349L;
     private Integer id;
     private String username;
     private String password;

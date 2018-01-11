@@ -8,7 +8,7 @@ import java.util.Date;
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class BaseModel implements Serializable{
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5400354435642567354L;
 
     public static final String YES = "YES";
     public static final String NO = "NO";
