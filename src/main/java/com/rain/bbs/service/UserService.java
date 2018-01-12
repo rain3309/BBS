@@ -10,4 +10,6 @@ public interface UserService {
 
     public User delete(User bean);
 
+    public User getByUsernmae(String username);
+
 }

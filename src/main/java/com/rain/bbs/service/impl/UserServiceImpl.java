@@ -28,4 +28,8 @@ public class UserServiceImpl implements UserService{
     public User delete(User bean) {
         return dao.delete(bean);
     }
+
+    public User getByUsernmae(String username) {
+        return dao.findByUsername(username);
+    }
 }

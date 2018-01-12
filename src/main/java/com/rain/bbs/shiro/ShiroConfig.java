@@ -6,6 +6,7 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -78,10 +79,10 @@ public class ShiroConfig {
         return securityManager;
     }
 
-//    @Bean(name = "authcFilter")
-//    public CmsAuthenticationFilter authcFilter(){
-//        return new CmsAuthenticationFilter();
-//    }
+    @Bean(name = "authcFilter")
+    public CmsAuthenticationFilter authcFilter(){
+        return new CmsAuthenticationFilter();
+    }
     @Bean
     @DependsOn(value = "lifecycleBeanPostProcessor")
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
@@ -102,18 +103,18 @@ public class ShiroConfig {
      *
      * @return
      */
-    @Bean(name="shiroFilter")
+    @Bean(name="shiroFilter",autowire = Autowire.BY_TYPE)
     public ShiroFilterFactoryBean shiroFilterFactoryBean(){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setSuccessUrl("/success");
+        //shiroFilterFactoryBean.setSuccessUrl("/success");
 
         Map<String,Filter> filters = new LinkedHashMap<>();
         CmsLogoutFilter logoutFilter = new CmsLogoutFilter();
-        CmsAuthenticationFilter authcFilter = new CmsAuthenticationFilter();
+        //CmsAuthenticationFilter authcFilter = authcFilter();
         filters.put("logout",logoutFilter);
-        filters.put("authc",authcFilter);
+        filters.put("authc",authcFilter());
         shiroFilterFactoryBean.setFilters(filters);
         //先后顺序
         Map<String,String> filterChainDefinitions = new LinkedHashMap<>();

@@ -2,18 +2,17 @@ package com.rain.bbs.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class FirstController {
+public class LoginController {
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public String login(){
-
-        return "view/login";
+        return "login";
     }
     @RequestMapping("/index")
     public String index(){
-
         return "index";
     }
 

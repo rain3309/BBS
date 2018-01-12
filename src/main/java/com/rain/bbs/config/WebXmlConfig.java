@@ -21,9 +21,12 @@ public class WebXmlConfig extends WebMvcConfigurerAdapter{
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("classpath:templates/view");
+        resolver.setPrefix("/templates");
         resolver.setSuffix(".html");
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
     }
+
+
+
 }

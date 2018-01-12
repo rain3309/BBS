@@ -11,4 +11,6 @@ public interface UserDao extends Repository<User,Integer>{
 
     public User delete(User bean);
 
+    public User findByUsername(String username);
+
 }
