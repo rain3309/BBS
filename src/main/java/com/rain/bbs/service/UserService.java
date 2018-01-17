@@ -12,4 +12,6 @@ public interface UserService {
 
     public User getByUsernmae(String username);
 
+    public User register(String ip,String orgCode,String username,String password);
+
 }

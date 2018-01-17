@@ -83,6 +83,7 @@ public class ShiroConfig {
     public CmsAuthenticationFilter authcFilter(){
         return new CmsAuthenticationFilter();
     }
+
     @Bean
     @DependsOn(value = "lifecycleBeanPostProcessor")
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator(){
@@ -122,6 +123,7 @@ public class ShiroConfig {
         filterChainDefinitions.put("/","anon");
         filterChainDefinitions.put("/login","authc");
         filterChainDefinitions.put("/**","authc");
+//        filterChainDefinitions.put("/user/**","anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitions);
         return shiroFilterFactoryBean;
     }

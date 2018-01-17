@@ -6,7 +6,7 @@ public class CmsLogoutFilter extends LogoutFilter{
 
     @Override
     public String getRedirectUrl() {
-        System.out.println("logout Filter ... ... ");
+        System.out.println(super.getRedirectUrl());
         return super.getRedirectUrl();
     }
 }

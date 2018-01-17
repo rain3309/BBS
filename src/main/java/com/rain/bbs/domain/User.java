@@ -1,8 +1,13 @@
 package com.rain.bbs.domain;
 
+import com.rain.bbs.security.Encodes;
+import org.apache.commons.lang3.StringUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -24,6 +29,49 @@ public class User extends BaseModel implements Serializable{
     private String status;
     private String rank;
     private String type;
+
+
+    private Set<UserDetail> details = new HashSet<>(0);
+    private Set<UserOrg> userOrgs = new HashSet<>(0);
+    private Set<UserRole> userRoles = new HashSet<>(0);
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.REMOVE)
+    public Set<UserDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(Set<UserDetail> details) {
+        this.details = details;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.REMOVE)
+    public Set<UserOrg> getUserOrgs() {
+        return userOrgs;
+    }
+
+    public void setUserOrgs(Set<UserOrg> userOrgs) {
+        this.userOrgs = userOrgs;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.REMOVE)
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
+
+    @Transient
+    public byte[] getByteSalt(){
+        String salt = getSalt();
+        if(StringUtils.isNoneBlank(salt)){
+            return Encodes.decodehex(salt);
+        }else{
+            return null;
+        }
+
+    }
 
     @Id
     @Column(name = "f_id")

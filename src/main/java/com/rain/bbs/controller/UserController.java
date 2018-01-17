@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "list",method = RequestMethod.GET)
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String list(HttpServletRequest request,Model model){
 
         return "user_list";
@@ -39,10 +39,17 @@ public class UserController {
         return "user_list";
     }
 
-    @RequestMapping(value = "delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
     public String delete(){
 
         //userService.delete()
+        return "user_list";
+    }
+
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String register(HttpServletRequest request,Model model){
+        User user = userService.register("127.0.0.1", null, "admin", "admin");
+        model.addAttribute("user",user);
         return "user_list";
     }
 }
