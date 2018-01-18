@@ -50,6 +50,5 @@ public class Digests {
         } catch (GeneralSecurityException e) {
             throw new IllegalArgumentException();
         }
-
     }
 }

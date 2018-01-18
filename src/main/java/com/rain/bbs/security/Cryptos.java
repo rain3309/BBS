@@ -20,4 +20,11 @@ public class Cryptos {
             throw new IllegalArgumentException("Encoding failed",e);
         }
     }
+
+    public static void main(String[] args) throws CharacterCodingException {
+        CharBuffer admin = CharBuffer.wrap("admin");
+        ByteBuffer encode = CHARSET.newEncoder().encode(admin);
+        byte b = encode.get();
+        System.out.println(b);
+    }
 }
